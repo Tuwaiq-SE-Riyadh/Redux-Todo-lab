@@ -1,0 +1,63 @@
+import "./App.css";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { addtodo, clearUser, updateUserName } from "./reducers/todo/todo";
+
+import List from "./Components/List";
+import { useDispatch, useSelector } from "react-redux";
+
+function App() {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => {
+    return {
+      todo: state.todo.todo,
+    };
+  });
+  console.log(state);
+  const [todoList, setTodoList] = useState([]);
+  // const [title, setTitle] = useState();
+  // const [userId, setuserId] = useState();
+  // const [id, setId] = useState(0);
+
+  useEffect(() => {
+    axios
+      .get("https://jsonplaceholder.typicode.com/todos/")
+      .then((response) => {
+        setTodoList(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => console.log(error));
+      todoList.map((e) => {
+      const todoInfo = {
+        userId: e.userId,
+        id: e.id,
+        title: e.title,
+        completed: false,
+      };
+      // console.log(todoInfo);
+
+      const action = addtodo(todoInfo);
+      console.log(todoInfo, action);
+
+      dispatch(action);
+    });
+  }, []);
+
+  useEffect(() => {
+    
+  },[]);
+  return (
+    <div className="App">
+      <header className="App-header">
+        {/* <button onClick={add}>Add to list</button> */}
+        <p> name: {state.todo.userId}</p>
+        <p> id: {state.todo.id}</p>
+        <p> title: {state.todo.title}</p>
+        <p> completed: {state.todo.completed}</p>
+        {/* <List todoList={todoList} /> */}
+      </header>
+    </div>
+  );
+}
+
+export default App;

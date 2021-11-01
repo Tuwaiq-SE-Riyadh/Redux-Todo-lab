@@ -1,0 +1,19 @@
+
+   #allch{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1rem;
+   }
+   #character{
+      border-style: solid;
+   }
+   #character:hover{
+      filter: brightness(107%);
+
+   }
+   .more{
+      float: left;
+      text-decoration: underline;
+   }
+   
+   

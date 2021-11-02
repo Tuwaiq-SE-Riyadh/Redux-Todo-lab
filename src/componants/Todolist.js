@@ -6,7 +6,7 @@ function Todolist(){
 
   const state = useSelector((state) => {
     return {
-        array: state.array.array,
+        array:  state.todo.array,
     };
   });
     return(

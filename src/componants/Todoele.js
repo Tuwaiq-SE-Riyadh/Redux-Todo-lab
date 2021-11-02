@@ -6,7 +6,7 @@ function Todoele({ele,index}){
     const dispatch = useDispatch();
     const state = useSelector((state) => {
         return {
-          array: state.array.array,
+          array:  state.todo.array,
         };
       });
 
